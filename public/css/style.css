@@ -29,6 +29,10 @@ a{
     margin-bottom: 32px !important;
 }
 
+#login{
+    height: 100vh;
+}
+
 
 /* Paddding */
 
@@ -39,6 +43,10 @@ a{
 .pRL-128{
     padding-left: 128px !important;
     padding-right: 128px !important;
+}
+
+.pR-16{
+    padding-right: 16px !important;
 }
 
 .pR-32{
@@ -77,6 +85,10 @@ a{
 
 .mL-8{
     margin-left: 8px !important;
+}
+
+.mB-8{
+    margin-bottom: 8px !important;
 }
 
 .mB-16{

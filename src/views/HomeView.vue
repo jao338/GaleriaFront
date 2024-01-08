@@ -2,15 +2,13 @@
   <div id="home" class="container">
     <HeaderComponent class="mB-32"></HeaderComponent>
 
-    <!-- <h3 class="mB-16">Galeria de imagens</h3> -->
-
     <SearchComponent/>
 
     <CardsComponent/>
 
-  <div v-for="user in users" :key="user.id">
+  <!-- <div v-for="user in users" :key="user.id">
     <span>{{ user.name }}</span>
-  </div>
+  </div> -->
 
   </div>
 </template>
@@ -39,6 +37,8 @@ export default {
         .then((res) => {
           users.value = res.data;
         });
+
+        document.title = 'Gallery'
     });
 
     return {
@@ -46,19 +46,5 @@ export default {
     };
     
   }
-
-  // data() {
-  //   return {
-  //     users: [],    
-  //     }
-  // },
-
-  // mounted() {
-  //   fetch('http://127.0.0.1:8000/api/users')
-  //   .then(response => response.json())
-  //   .then((res) => {
-  //     this.users = res.data;
-  //   });
-  // }
 }
 </script>
