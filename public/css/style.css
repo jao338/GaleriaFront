@@ -7,13 +7,16 @@
     padding: 0 !important;
 }
 
+.navbar-brand{
+    margin-right: 0 !important;
+}
+
 ul{
     list-style: none;
 }
 
 ul a{
     color: black !important;
-    margin-right: 16px !important;
 }
 
 
@@ -38,10 +41,22 @@ a{
     padding-right: 128px !important;
 }
 
+.pR-32{
+    padding-right: 32px !important;
+}
+
+.pL-32{
+    padding-left: 32px !important;
+}
+
 /* Margin */
 
 .m-0{
     margin: 0 !important;
+}
+
+.mR-8{
+    margin-right: 8px !important;
 }
 
 .mR-16{
@@ -62,6 +77,10 @@ a{
 
 .mL-8{
     margin-left: 8px !important;
+}
+
+.mB-16{
+    margin-bottom: 16px !important;
 }
 
 .mB-32{

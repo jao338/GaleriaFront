@@ -11,12 +11,6 @@
                 </a>
 
                 <div class="d-flex align-items-center navbar-brand">
-                    <ul class="d-flex m-0">
-                        <li><a href="/">Paisagem</a></li>
-                        <li><a href="/">Natureza</a></li>
-                        <li><a href="/">Animais</a></li>
-                        <li><a href="/">Carros</a></li>
-                    </ul>
 
                     <a href="/" style="color: black" class="border btn btn-light mR-32 mL-32">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -30,10 +24,12 @@
                     </a>
 
                     <div>
-                        <a href="/login" class="btn btn-dark">Login</a>
+                        <a href="/login" class="btn btn-dark mR-8">Login</a>
                         <a href="/register" class="btn btn-outline-dark">Register</a>
                     </div>
+
                 </div>
+                
             </div>
         </div>
     </div>
@@ -43,7 +39,6 @@
 <script>
     export default {
         name: 'HeaderComponent',
-
     }
 </script>
 
