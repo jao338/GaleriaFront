@@ -2,7 +2,7 @@
   <div id="home" class="container">
     <HeaderComponent class="mB-32"></HeaderComponent>
 
-    <SearchComponent/>
+    <SearchComponent class="mB-32"></SearchComponent>
 
     <CardsComponent/>
 
@@ -13,21 +13,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from 'vue';
 import HeaderComponent from '@/components/HeaderComponent.vue';
 import SearchComponent from '@/components/SearchComponent.vue';
 import CardsComponent from '@/components/CardsComponent.vue';
-
-export default {
-
-  components: {
-    HeaderComponent,
-    SearchComponent,
-    CardsComponent
-  },
-
-  setup(){
 
   const users = ref([]);
 
@@ -37,14 +27,21 @@ export default {
         .then((res) => {
           users.value = res.data;
         });
-
-        document.title = 'Gallery'
     });
-
-    return {
-      users,
-    };
     
-  }
-}
 </script>
+
+<script>
+export default{
+  components: {
+    HeaderComponent,
+    SearchComponent,
+    CardsComponent
+  },
+}
+
+</script>
+
+<style scoped>
+
+</style>

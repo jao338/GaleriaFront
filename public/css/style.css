@@ -7,6 +7,11 @@
     padding: 0 !important;
 }
 
+.container{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
 .navbar-brand{
     margin-right: 0 !important;
 }
@@ -23,16 +28,6 @@ ul a{
 a{
     text-decoration: none !important;
 }
-
-.card{
-    height: 224px !important;
-    margin-bottom: 32px !important;
-}
-
-#login{
-    height: 100vh;
-}
-
 
 /* Paddding */
 
@@ -55,6 +50,14 @@ a{
 
 .pL-32{
     padding-left: 32px !important;
+}
+
+.pB-32{
+    padding-bottom: 32px !important;
+}
+
+.pA-32{
+    padding: 32px !important;
 }
 
 /* Margin */
@@ -87,6 +90,10 @@ a{
     margin-left: 8px !important;
 }
 
+.mB-4{
+    margin-top: 4px !important;
+}
+
 .mB-8{
     margin-bottom: 8px !important;
 }
@@ -101,6 +108,10 @@ a{
 
 .mB-64{
     margin-bottom: 64px !important;
+}
+
+.mT-4{
+    margin-top: 4px !important;
 }
 
 .mT-16{
