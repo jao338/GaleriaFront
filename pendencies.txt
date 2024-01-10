@@ -1,3 +1,5 @@
 X - Ao buscar uma imagem no componente header emitir um evento que retorna a resposta da api. No elemento pai verificar se a chamada retornou algo.
 
 X - Adicionar uma formatação maior nos cards e nas imagens dentro deles
+
+X - Testar o responsivo em todas as view
