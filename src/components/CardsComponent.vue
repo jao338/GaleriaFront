@@ -3,69 +3,66 @@
     <div id="cards" class="row d-flex justify-content-center">
 
         <div class="col-md-5 card">
-            <div class="d-flex justify-content-center card-header">Paraguaio</div>
-            <div class="card-body d-flex justify-content-center align-items-center p-0">
-                <img src="../assets/img/paraguaio.jpeg" class="card-img-bottom" alt="">
-            </div>
-        </div>
-
-        <div class="col-md-5 card">
             <div class="d-flex justify-content-center card-header">Macaco</div>
             <div class="card-body d-flex justify-content-center align-items-center p-0">
-                <img src="../assets/img/macaco.jpg" class="card-img-bottom" alt="">
+                <img src="macaco.jpg" class="card-img-bottom" alt="">
             </div>
         </div>
 
         <div class="col-md-5 card">
-            <div class="d-flex justify-content-center card-header">Palhaço</div>
+            <div class="d-flex justify-content-center card-header">Paraguaio</div>
             <div class="card-body d-flex justify-content-center align-items-center p-0">
-                <img src="../assets/img/palhaço.jpg" class="card-img-bottom" alt="">
+                <img src="macaco.jpg" class="card-img-bottom" alt="">
             </div>
         </div>
 
         <div class="col-md-5 card">
-            <div class="d-flex justify-content-center card-header">sei lá, man kkkkkk</div>
+            <div class="d-flex justify-content-center card-header">Paraguaio</div>
             <div class="card-body d-flex justify-content-center align-items-center p-0">
-                <img src="../assets/img/sei_la.jpg" class="card-img-bottom" alt="">
+                <img src="macaco.jpg" class="card-img-bottom" alt="">
             </div>
         </div>
-        
+
+        <div class="col-md-5 card">
+            <div class="d-flex justify-content-center card-header">Paraguaio</div>
+            <div class="card-body d-flex justify-content-center align-items-center p-0">
+                <img src="macaco.jpg" class="card-img-bottom" alt="">
+            </div>
+        </div>
+
+        {{ users }}
+
     </div>
 
 </template>
 
-<script>
-    export default {
+<script setup>
+    import { onMounted, ref } from "vue";
+    import { api } from '@/config/axios'
 
-    data() {
-        return {
-            users: [],    
-        }
-    },
+    const users = ref([])
 
-    mounted() {
-        fetch('http://127.0.0.1:8000/api/users')
-        .then(response => response.json())
-        .then((res) => {
+    
 
-            this.users = res.data;
+    onMounted(() => {
+        api.get('users').then(function(r) {
+            users.value = r.data.data;
+        })
 
-        });
-    }
-}
+    })
+    
+
 </script>
 
 <style scoped>
-
-    .card{
+    .card {
         margin-left: 54px !important;
         margin-right: 54px !important;
         margin-bottom: 64px !important;
     }
 
-    .card-body{
+    .card-body {
         max-height: 320px !important;
         overflow: hidden;
     }
-
 </style>

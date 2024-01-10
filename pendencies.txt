@@ -7,3 +7,5 @@ X - Testar o responsivo em todas as views
 X - Adicionar modais de confirmação
 
 X - Validar campos antes de enviar para o backend
+
+X - Criar componentes customizados de cada elemento.

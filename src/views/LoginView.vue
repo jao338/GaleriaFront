@@ -5,7 +5,7 @@
     <div class="row">
       
       <div class="d-flex col-md-5">
-        <img src="../assets/img/login.svg" alt="" srcset="" class="w-100">
+        <img src="login.svg" alt="" srcset="" class="w-100">
       </div>
 
       <div class="d-flex col-md-7 align-items-center">
