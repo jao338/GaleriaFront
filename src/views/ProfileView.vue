@@ -59,7 +59,8 @@
 
                 <form @submit.prevent="save" class="pA-32 w-50">
                     <h4>Delete account</h4>
-                    <p>Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.</p>
+                    <p>Once your account is deleted, all of its resources and data will be permanently deleted. Before
+                        deleting your account, please download any data or information that you wish to retain.</p>
 
                     <button type="submit" class="btn btn-danger mT-16">Delete account</button>
                 </form>
@@ -73,16 +74,12 @@
 </template>
 
 <script setup>
-
     import HeaderComponent from '@/components/HeaderComponent.vue'
     import SearchComponent from '@/components/SearchComponent.vue'
-    // import { onMounted, ref } from 'vue';
 
     let currentPassword = 'CurrentPassword';
     let newPassword = 'NewPassword';
     let confirmPassword = 'ConfirmPassword';
-
-
 </script>
 
 <script>
@@ -91,7 +88,8 @@
         components: {
             HeaderComponent,
             SearchComponent,
-        }
+        },
+
 
     }
 </script>

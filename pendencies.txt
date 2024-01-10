@@ -2,4 +2,8 @@ X - Ao buscar uma imagem no componente header emitir um evento que retorna a res
 
 X - Adicionar uma formatação maior nos cards e nas imagens dentro deles
 
-X - Testar o responsivo em todas as view
+X - Testar o responsivo em todas as views
+
+X - Adicionar modais de confirmação
+
+X - Validar campos antes de enviar para o backend

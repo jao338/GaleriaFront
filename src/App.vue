@@ -1,29 +1,18 @@
 <template>
-  <router-view/>
+  <v-app>
+    <v-main>
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import { onMounted } from 'vue'
 
-export default{
+export default {
+  name: 'App',
 
-  setup(){
-
-    onMounted(() => {
-
-        document.title = 'Gallery'
-    });
-
-    return {
-
-    }
-
-  }
-
+  data: () => ({
+    //
+  }),
 }
-
 </script>
-
-<style>
-
-</style>
