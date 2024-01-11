@@ -8,27 +8,25 @@
         <img src="register.svg" alt="" srcset="" class="w-100">
       </div>
 
-      <div class="d-flex col-md-7 align-items-center">
-        
-        <form @submit.prevent="register" class="d-flex flex-column align-items-center w-100">
-          
+      <v-sheet class="d-flex col-md-7 align-items-center">
+        <v-form @submit.prevent="register" class="d-flex flex-column align-items-center w-100">
           <h1 class="mB-32">Register</h1>
 
-          <input type="text" name="name" placeholder="Name" class="form-control w-50 mB-16">
-          <input type="text" name="login" placeholder="Email" class="form-control w-50 mB-16">
-          <input type="text" name="password" placeholder="Password" class="form-control w-50 mB-16">
-          <input type="text" name="confirm_password" placeholder="Confirm Password" class="form-control w-50">
+          <v-text-field type="text" name="name" v-model="form.name" :rules="nameRules" placeholder="Name" class="w-50 mB-16" id="name"></v-text-field>
+          <v-text-field type="text" name="login" v-model="form.email" :rules="emailRules" placeholder="Email" class="w-50 mB-16" id="email"></v-text-field>
+          <v-text-field type="password" name="password" v-model="form.password" :rules="passwordRules" placeholder="Password" class="w-50 mB-16" id="password"></v-text-field>
+          <v-text-field type="password" name="confirm_password" v-model="form.confirmPassword" :rules="confirmPasswordRules" placeholder="Confirm Password" class="w-50" id="confirmPassword"></v-text-field>
 
-          <button type="submit" class="btn btn-primary w-50 mT-32">Register</button>
+          <button type="submit" class="btn btn-primary w-50 mT-32" :loading="loading">Register</button>
 
           <div class="d-flex justify-content-center w-50 mT-16">
             <span class="mR-16">Already have a registration?</span>
             <routerLink :to="{ name : 'login'}">Login!</routerLink>
           </div>
 
-        </form>
+        </v-form>
 
-      </div>
+      </v-sheet>
 
     </div>
 
@@ -39,11 +37,81 @@
       </svg>
 
     </routerLink>
+
   </div>
 
 </template>
 
 <script setup>
+import { reactive } from "vue";
+import { api } from '@/config/axios'
+import { useRouter } from 'vue-router'
+
+  const router = useRouter()
+
+  let loading = false
+
+    const form = reactive({
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    });
+
+    const register = () => {
+
+      loading = true
+
+      api.post('users', form) 
+      .then(() => {
+        router.push({name: 'home'})
+      })
+
+      .catch(error => {
+        console.error('Erro ao enviar dados: ', error)
+      })
+      
+      loading = false
+    }
+
+    const nameRules = [
+        value => {
+          if (value) return true
+
+          return 'You must enter a value.'
+        },
+    ];
+
+    const emailRules = [
+        value => {
+          if (value) return true
+
+          return 'You must enter a value.'
+        },
+        
+        value => {
+          if (/.+@.+\..+/.test(value)) return true
+
+          return 'E-mail must be valid.'
+        }
+    ];
+
+    const passwordRules = [
+        value => {
+          if (value) return true
+
+          return 'You must enter a value.'
+        }
+
+    ];
+
+    const confirmPasswordRules = [
+        value => {
+          if (value) return true
+
+          return 'You must enter a value.'
+        }
+    ];
 
 </script>
 
@@ -53,5 +121,9 @@
     top: 5%;
     left: 95%;
     color: #0d6efd;
+  }
+
+  #login{
+    height: 100vh;
   }
 </style>

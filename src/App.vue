@@ -6,13 +6,8 @@
   </v-app>
 </template>
 
-<script>
+<script setup>
 
-export default {
-  name: 'App',
+  document.title = 'Gallery'
 
-  data: () => ({
-    //
-  }),
-}
 </script>

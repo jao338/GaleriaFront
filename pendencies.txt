@@ -6,6 +6,8 @@ X - Testar o responsivo em todas as views
 
 X - Adicionar modais de confirmação
 
-X - Validar campos antes de enviar para o backend
+X - É possível validar um campo utilizando apenas uma regra, sendo que apenas a primeira é considerada
 
 X - Criar componentes customizados de cada elemento.
+
+X - Implementar o sistema de login usando token

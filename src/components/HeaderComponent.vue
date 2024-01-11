@@ -32,6 +32,8 @@
                         <routerLink class="btn btn-outline-dark" :to="{ name: 'register' }">Register</routerLink>
                     </div>
 
+                    <!-- <routerLink class="btn btn-dark" :to="{ name: 'profile' }">Profile</routerLink> -->
+
                 </div>
                 
             </div>

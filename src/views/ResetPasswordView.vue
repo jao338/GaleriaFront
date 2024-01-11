@@ -18,16 +18,15 @@
                 
                 <div class="mB-16">Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</div>
 
-                <form @submit.prevent="resetPassword" class="d-flex flex-column">
+                <v-sheet>
+                    
+                    <v-form @submit.prevent>
+                        
+                        <v-text-field v-model="email" :rules="rules" label="Email"></v-text-field>
+                        <button type="submit" class="btn btn-primary w-100 mT-16">Send</button>
 
-                    <label for="email" class="mB-4">Email</label>
-                    <input type="text" name="email" class="form-control mB-4">
-
-                    <span v-text="msg ? msg : ''" class="text-danger"></span>
-
-                    <button class="btn btn-primary mT-32">Send</button>
-
-                </form>
+                    </v-form>
+                </v-sheet>
 
             </div>
         </div>
@@ -47,9 +46,28 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 
-    let msg = 'Teste';
+    // const resetPassword = () => {
+    //     console.log('resetPassword');
+    // }
 
+
+    const email = ref('');
+
+    const rules = [
+        value => {
+          if (value) return true
+
+          return 'You must enter a first name.'
+        },
+        
+        value => {
+          if (/.+@.+\..+/.test(value)) return true
+
+          return 'E-mail must be valid.'
+        }
+    ];
 </script>
 
 <style>
