@@ -12,7 +12,7 @@
 
                 <div class="d-flex align-items-center navbar-brand">
 
-                    <form @submit.prevent="upload()" style="color: black" >
+                    <form @submit.prevent="upload" style="color: black" >
 
                         <button type="submit" class="border btn btn-light mR-32 mL-32">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -27,12 +27,17 @@
 
                     </form>
 
-                    <div>
+                    <div v-if="userIsLoggedIn">
                         <routerLink class="btn btn-dark mR-8" :to="{ name: 'login' }">Login</routerLink>
                         <routerLink class="btn btn-outline-dark" :to="{ name: 'register' }">Register</routerLink>
                     </div>
 
-                    <!-- <routerLink class="btn btn-dark" :to="{ name: 'profile' }">Profile</routerLink> -->
+                    <div class="d-flex" v-else>
+                        <routerLink class="btn btn-dark mR-8" :to="{ name: 'profile' }">Profile</routerLink>
+                        <form @submit.prevent="logout">
+                            <button type="submit" class="btn btn-outline-dark">Log out</button>
+                        </form>
+                    </div>
 
                 </div>
                 
@@ -42,23 +47,33 @@
 
 </template>
 
-<script>
+<script setup>
 
-    export default {
-        name: 'HeaderComponent',
+import { api } from '@/config/axios'
+import { useRouter } from 'vue-router'
 
-        setup(){
+  const router = useRouter();
 
-            const upload = () => {
-                console.log('upload');
-            }
-
-            return{
-                upload,
-            }
-
-        }
+    const upload = () => {
+        console.log('upload');
     }
+
+    const logout = () => {
+
+    api.post('logout')
+    .then(() => {
+      
+      router.push({ name: 'home', query: { loggedIn: false } });
+
+    })
+
+    .catch(error => {
+
+      console.log(error);
+
+    })
+
+  }
 
 </script>
 

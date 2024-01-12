@@ -37,12 +37,10 @@
 </template>
 
 <script setup>
-    import { onMounted, ref } from "vue";
-    import { api } from '@/config/axios'
+import { onMounted, ref } from "vue";
+import { api } from '@/config/axios'
 
     const users = ref([])
-
-    
 
     onMounted(() => {
         api.get('users').then(function(r) {

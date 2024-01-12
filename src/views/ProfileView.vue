@@ -15,9 +15,7 @@
 
                     <label for="name" class="mB-4">Name</label>
 
-                    {{name}}
-
-                    <custom-input v-model="name"></custom-input>
+                    <!-- <custom-input v-model="name"></custom-input> -->
                     
                     <input type="text" name="name" class="form-control mB-16">
 
@@ -35,7 +33,7 @@
 
             <div class="w-100 card">
 
-                <!-- <form @submit.prevent="save" class="pA-32 w-50">
+                <form @submit.prevent="save" class="pA-32 w-50">
                     <h4>Update password</h4>
                     <p>Ensure your account is using a long, random password to stay secure.</p>
 
@@ -49,19 +47,7 @@
                     <input type="text" name="confirmPassword" class="form-control mB-4">
 
                     <button type="submit" class="btn btn-primary mT-16">Save</button>
-                </form> -->
-
-
-                <v-sheet width="300" class="mx-auto">
-                    <v-form @submit.prevent>
-                    <v-text-field
-                        v-model="firstName"
-                        :rules="rules"
-                        label="First name"
-                    ></v-text-field>
-                    <v-btn type="submit" block class="mt-2">Submit</v-btn>
-                    </v-form>
-                </v-sheet>
+                </form>
 
             </div>
 
@@ -122,12 +108,12 @@
 
     import HeaderComponent from '@/components/HeaderComponent.vue'
     import SearchComponent from '@/components/SearchComponent.vue'
-    import CustomInput     from '@/components/CustomInput.vue'
+    // import CustomInput     from '@/components/CustomInput.vue'
     import { ref } from 'vue';
 
     const dialog = ref(false)
 
-    const name = ref('')
+    // const name = ref('')
     
     const deleteCount = () => {
         console.log('deleteCount');
@@ -138,7 +124,6 @@
 
 <style>
     #profile {
-        padding-top: 32px;
         padding-bottom: 32px;
     }
 

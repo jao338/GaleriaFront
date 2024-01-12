@@ -14,8 +14,8 @@
           
           <h1 class="mB-32">Login</h1>
 
-          <input type="text" name="login" placeholder="Email" class="form-control w-50 mB-16">
-          <input type="text" name="password" placeholder="Password" class="form-control w-50">
+          <input type="text" name="email" v-model="form.email" placeholder="Email" class="form-control w-50 mB-16">
+          <input type="password" name="password" v-model="form.password" placeholder="Password" class="form-control w-50">
 
           <div class="w-50 d-flex justify-content-between mT-16">
 
@@ -27,6 +27,8 @@
             <routerLink :to="{ name : 'forgot' }">Forgot your password?</routerLink>
 
           </div>
+
+          <div class="w-50 text-start text-danger mB-8">{{ showMessage }}</div>
 
           <button type="submit" class="btn btn-primary w-50">Login</button>
 
@@ -54,7 +56,46 @@
 </template>
 
 <script setup>
+import { reactive, ref } from "vue";
+import { api } from '@/config/axios'
+import { useRouter } from 'vue-router'
+
+  const router = useRouter();
+
+  let showMessage = ref('')
     
+  const form = reactive({
+      email: '',
+      password: '',
+  });
+
+  const login = () => {
+
+    api.post('login', form)
+    .then((response) => {
+      
+      // console.log(response.data.user);
+
+      router.push({ name: 'home', query: { loggedIn: true, user: response.data.user } });
+
+    })
+
+    .catch(error => {
+
+      if(error.response.status == 422){
+
+        showMessage.value = error.response.data.message
+
+        setTimeout(() => {
+          showMessage.value = ''
+        }, 2000);
+
+      }
+
+    })
+
+  }
+
 </script>
 
 <style>

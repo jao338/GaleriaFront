@@ -1,44 +1,30 @@
 <template>
-  <div id="home" class="container">
-    <HeaderComponent class="mB-32"></HeaderComponent>
+    <div id="home" class="container">
+        <HeaderComponent :login="userIsLoggedIn" class="mB-32"></HeaderComponent>
 
-    <SearchComponent class="mB-32"></SearchComponent>
+        <SearchComponent class="mB-32"></SearchComponent>
 
-    <CardsComponent/>
+        <CardsComponent />
 
-  <!-- <div v-for="user in users" :key="user.id">
-    <span>{{ user.name }}</span>
-  </div> -->
-
-  </div>
+    </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import HeaderComponent from '@/components/HeaderComponent.vue';
-import SearchComponent from '@/components/SearchComponent.vue';
-import CardsComponent from '@/components/CardsComponent.vue';
+    import HeaderComponent from '@/components/HeaderComponent.vue';
+    import SearchComponent from '@/components/SearchComponent.vue';
+    import CardsComponent from '@/components/CardsComponent.vue';
+    import { useRoute } from "vue-router";
+    import { onMounted, ref } from 'vue';
 
-  const users = ref([]);
+    const route = useRoute();
 
-    onMounted(() => {
-      fetch('http://127.0.0.1:8000/api/users')
-        .then(response => response.json())
-        .then((res) => {
-          users.value = res.data;
-        });
-    });
+    const userIsLoggedIn = ref(false);
     
-</script>
+    onMounted(() => {
+        // Atualiza o estado de userIsLoggedIn com base no parâmetro de query
+        userIsLoggedIn.value = route.query.loggedIn === 'true';
 
-<script>
-export default{
-  components: {
-    HeaderComponent,
-    SearchComponent,
-    CardsComponent
-  },
-}
+    });
 
 </script>
 

@@ -17,7 +17,8 @@
           <v-text-field type="password" name="password" v-model="form.password" :rules="passwordRules" placeholder="Password" class="w-50 mB-16" id="password"></v-text-field>
           <v-text-field type="password" name="confirm_password" v-model="form.confirmPassword" :rules="confirmPasswordRules" placeholder="Confirm Password" class="w-50" id="confirmPassword"></v-text-field>
 
-          <button type="submit" class="btn btn-primary w-50 mT-32" :loading="loading">Register</button>
+          <div class="w-50 text-start text-danger">{{ showMessage }}</div>
+          <button type="submit" class="btn btn-primary w-50 mT-16" :loading="loading">Register</button>
 
           <div class="d-flex justify-content-center w-50 mT-16">
             <span class="mR-16">Already have a registration?</span>
@@ -43,7 +44,7 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { api } from '@/config/axios'
 import { useRouter } from 'vue-router'
 
@@ -68,11 +69,23 @@ import { useRouter } from 'vue-router'
       })
 
       .catch(error => {
-        console.error('Erro ao enviar dados: ', error)
+        
+        if(error.response.status == 422){
+
+          showMessage.value = error.response.data.message
+
+          setTimeout(() => {
+            showMessage.value = ''
+          }, 2000);
+
+        }
+        
       })
       
       loading = false
     }
+
+    let showMessage = ref('')
 
     const nameRules = [
         value => {
