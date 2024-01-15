@@ -27,7 +27,7 @@
 
                     </form>
 
-                    <div v-if="userIsLoggedIn">
+                    <div v-if="!showButtons">
                         <routerLink class="btn btn-dark mR-8" :to="{ name: 'login' }">Login</routerLink>
                         <routerLink class="btn btn-outline-dark" :to="{ name: 'register' }">Register</routerLink>
                     </div>
@@ -50,30 +50,65 @@
 <script setup>
 
 import { api } from '@/config/axios'
-import { useRouter } from 'vue-router'
+import { onMounted, ref} from 'vue'
+// import { useRouter } from 'vue-router'
 
-  const router = useRouter();
+//   const router = useRouter();
 
     const upload = () => {
-        console.log('upload');
+        // console.log('upload');
     }
+
+    let showButtons = ref(false)
+
+    onMounted(() => {
+        
+        if(localStorage.getItem('token')){
+            api.get('me', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            .then(() => {
+            
+                showButtons.value = true;
+
+            })
+            .catch(error => {
+
+                console.log(error);
+
+            })
+        }else{
+
+            showButtons.value = false;
+
+        }
+
+    })
 
     const logout = () => {
 
-    api.post('logout')
-    .then(() => {
-      
-      router.push({ name: 'home', query: { loggedIn: false } });
+        api.post('logout', {}, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        .then((response) => {
+        
+            console.log(response);
 
-    })
+        //   router.push({ name: 'home' });
 
-    .catch(error => {
+        })
 
-      console.log(error);
+        .catch(error => {
 
-    })
+            console.log(error);
 
-  }
+        })
+
+    }
 
 </script>
 

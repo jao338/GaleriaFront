@@ -63,9 +63,13 @@ import { useRouter } from 'vue-router'
 
       loading = true
 
-      api.post('users', form) 
-      .then(() => {
+      api.post('register', form) 
+      .then((response) => {
+
+        localStorage.setItem('token', response.data.token)
+
         router.push({name: 'home'})
+
       })
 
       .catch(error => {

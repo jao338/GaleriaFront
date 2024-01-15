@@ -73,10 +73,10 @@ import { useRouter } from 'vue-router'
 
     api.post('login', form)
     .then((response) => {
-      
-      // console.log(response.data.user);
 
-      router.push({ name: 'home', query: { loggedIn: true, user: response.data.user } });
+      localStorage.setItem('token', response.data.token)
+      
+      router.push({ name: 'home'});
 
     })
 

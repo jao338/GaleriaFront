@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Guard from "@/services/middleware"
 
 const routes = [
   {
@@ -37,6 +38,7 @@ const routes = [
   {
     path: '/profile',
     name: 'profile',
+    beforeEnter: Guard.auth,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

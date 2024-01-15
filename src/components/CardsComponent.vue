@@ -10,27 +10,27 @@
         </div>
 
         <div class="col-md-5 card">
-            <div class="d-flex justify-content-center card-header">Paraguaio</div>
+            <div class="d-flex justify-content-center card-header">Macaco</div>
             <div class="card-body d-flex justify-content-center align-items-center p-0">
                 <img src="macaco.jpg" class="card-img-bottom" alt="">
             </div>
         </div>
 
         <div class="col-md-5 card">
-            <div class="d-flex justify-content-center card-header">Paraguaio</div>
+            <div class="d-flex justify-content-center card-header">Macaco</div>
             <div class="card-body d-flex justify-content-center align-items-center p-0">
                 <img src="macaco.jpg" class="card-img-bottom" alt="">
             </div>
         </div>
 
         <div class="col-md-5 card">
-            <div class="d-flex justify-content-center card-header">Paraguaio</div>
+            <div class="d-flex justify-content-center card-header">Macaco</div>
             <div class="card-body d-flex justify-content-center align-items-center p-0">
                 <img src="macaco.jpg" class="card-img-bottom" alt="">
             </div>
         </div>
 
-        {{ users }}
+        <!-- {{ users }} -->
 
     </div>
 
@@ -43,9 +43,19 @@ import { api } from '@/config/axios'
     const users = ref([])
 
     onMounted(() => {
-        api.get('users').then(function(r) {
-            users.value = r.data.data;
-        })
+
+        if(localStorage.getItem('token')){
+            
+            api.get('users', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            .then(function(r) {
+                users.value = r.data.data;
+            })
+            
+        }
 
     })
     
