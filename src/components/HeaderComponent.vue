@@ -51,15 +51,12 @@
 
 import { api } from '@/config/axios'
 import { onMounted, ref} from 'vue'
-// import { useRouter } from 'vue-router'
-
-//   const router = useRouter();
 
     const upload = () => {
         // console.log('upload');
     }
 
-    let showButtons = ref(false)
+    const showButtons = ref(false)
 
     onMounted(() => {
         
@@ -94,11 +91,11 @@ import { onMounted, ref} from 'vue'
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },
         })
-        .then((response) => {
-        
-            console.log(response);
+        .then(() => {
 
-        //   router.push({ name: 'home' });
+            localStorage.removeItem('token')
+
+            window.location.reload(true);
 
         })
 

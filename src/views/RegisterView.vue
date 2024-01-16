@@ -52,6 +52,8 @@ import { useRouter } from 'vue-router'
 
   let loading = false
 
+  let showMessage = ref('')
+
     const form = reactive({
       name: '',
       email: '',
@@ -89,7 +91,7 @@ import { useRouter } from 'vue-router'
       loading = false
     }
 
-    let showMessage = ref('')
+    
 
     const nameRules = [
         value => {

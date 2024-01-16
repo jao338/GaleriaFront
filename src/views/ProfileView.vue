@@ -8,7 +8,6 @@
         <div class="item d-flex justify-content-between w-100 mB-32">
 
             <div class="w-100 card">
-
                 <form @submit.prevent="save" class="pA-32 w-50">
                     <h4>Profile</h4>
                     <p>Update your account's profile information and email address</p>
@@ -17,10 +16,11 @@
 
                     <!-- <custom-input v-model="name"></custom-input> -->
                     
-                    <input type="text" name="name" class="form-control mB-16">
+                    <input type="text" name="name" class="form-control mB-16" v-model="user.name">
 
                     <label for="email" class="mB-4">Email</label>
-                    <input type="text" name="email" class="form-control mB-16">
+                    <input type="text" name="email" class="form-control mB-16" v-model="user.email">
+
 
                     <button type="submit" class="btn btn-primary mT-16">Save</button>
                 </form>
@@ -46,6 +46,7 @@
                     <label for="confirmPassword" class="mB-4 mT-16">Confirm Password</label>
                     <input type="text" name="confirmPassword" class="form-control mB-4">
 
+                    <div class="w-50 text-start text-danger">{{ showMessage }}</div>
                     <button type="submit" class="btn btn-primary mT-16">Save</button>
                 </form>
 
@@ -81,17 +82,15 @@
 
                                     <v-card-actions>
 
-                                        <form @submit.prevent="deleteCount">
+                                        <v-form @submit.prevent="deleteCount">
                                             <v-btn color="primary" block type="submit">Yes</v-btn>
-                                        </form>
+                                        </v-form>
 
                                     </v-card-actions>
-
                                 </div>
-
-
                             </v-card>
                         </v-dialog>
+
                     </v-btn>
 
                 </form>
@@ -106,18 +105,90 @@
 
 <script setup>
 
+    // import CustomInput     from '@/components/CustomInput.vue'
     import HeaderComponent from '@/components/HeaderComponent.vue'
     import SearchComponent from '@/components/SearchComponent.vue'
-    // import CustomInput     from '@/components/CustomInput.vue'
-    import { ref } from 'vue';
+    import { api } from '@/config/axios'
+    import { onMounted, ref } from 'vue';
 
     const dialog = ref(false)
+    const user = ref([])
+    let showMessage = ref('')
 
     // const name = ref('')
-    
+
+    const save = () => {
+
+        api.put(`users/${user.value.id}`, {
+            name: user.value.name,
+            email: user.value.email,
+        }, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,  
+            }
+        })
+
+        .then(() => {
+            window.location.reload(true);
+        })
+
+        .catch((error) => {
+
+            if(error.response.status == 422){
+
+            showMessage.value = error.response.data.message
+
+            setTimeout(() => {
+                showMessage.value = ''
+            }, 2000);
+
+            }
+
+        })
+
+    }
+
     const deleteCount = () => {
-        console.log('deleteCount');
+        
+        api.delete(`users/${user.value.id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+
+        .then((response) => {
+
+            localStorage.removeItem('token');
+            
+            window.location.reload(true);
+
+            console.log(response.data.message);
+        })
+
+        .catch((error) => {
+            console.log(error);
+        })
+        
     };
+
+    onMounted(() =>{
+
+        api.get('me', {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        .then((response) => {
+
+            user.value = response.data.me;
+            // console.log(user.value);
+
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+    })
 
 
 </script>
