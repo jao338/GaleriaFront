@@ -2,7 +2,7 @@
     <div id="headerComponent">
         <div class="navbar">
             <div class="container d-flex justify-content-between">
-                <routerLink :to="{ name:'home' }" class="navbar-brand">
+                <routerLink :to="{ name: 'home' }" class="navbar-brand">
                     <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="fillColor"
                         class="bi bi-github" viewBox="0 0 16 16">
                         <path
@@ -12,20 +12,12 @@
 
                 <div class="d-flex align-items-center navbar-brand">
 
-                    <form @submit.prevent="upload" style="color: black" >
+                    <v-sheet width="300" class="mx-auto">
 
-                        <button type="submit" class="border btn btn-light mR-32 mL-32">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-upload" viewBox="0 0 16 16">
-                                <path
-                                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                                <path
-                                    d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
-                            </svg>
-                            <span class="mL-8">Fazer upload</span>
-                        </button>
+                        <v-file-input accept="image/*" label="File input"
+                         v-model="file"   @change="upload"></v-file-input>
+                    </v-sheet>
 
-                    </form>
 
                     <div v-if="!showButtons">
                         <routerLink class="btn btn-dark mR-8" :to="{ name: 'login' }">Login</routerLink>
@@ -40,7 +32,7 @@
                     </div>
 
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -48,35 +40,55 @@
 </template>
 
 <script setup>
+    import {
+        api
+    } from '@/config/axios'
+    import {
+        onMounted,
+        ref
+    } from 'vue'
 
-import { api } from '@/config/axios'
-import { onMounted, ref} from 'vue'
+    const file = ref('')
 
     const upload = () => {
-        // console.log('upload');
+        let image = file.value[0]
+
+        const formData = new FormData();
+        formData.append('image', image);
+
+        api.post('gallery', formData)
+
+        .then((response) => {
+            console.log(response);
+        })
+
+        .catch((error) => {
+            console.log(error);
+        })
+
     }
 
     const showButtons = ref(false)
 
     onMounted(() => {
-        
-        if(localStorage.getItem('token')){
+
+        if (localStorage.getItem('token')) {
             api.get('me', {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
-            .then(() => {
-            
-                showButtons.value = true;
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    },
+                })
+                .then(() => {
 
-            })
-            .catch(error => {
+                    showButtons.value = true;
 
-                console.log(error);
+                })
+                .catch(error => {
 
-            })
-        }else{
+                    console.log(error);
+
+                })
+        } else {
 
             showButtons.value = false;
 
@@ -87,33 +99,30 @@ import { onMounted, ref} from 'vue'
     const logout = () => {
 
         api.post('logout', {}, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            },
-        })
-        .then(() => {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            .then(() => {
 
-            localStorage.removeItem('token')
+                localStorage.removeItem('token')
 
-            window.location.reload(true);
+                window.location.reload(true);
 
-        })
+            })
 
-        .catch(error => {
+            .catch(error => {
 
-            console.log(error);
+                console.log(error);
 
-        })
+            })
 
     }
-
 </script>
 
 <style scoped>
-
-    #headerComponent{
+    #headerComponent {
         margin-left: 52px !important;
         margin-right: 52px !important;
     }
-
 </style>

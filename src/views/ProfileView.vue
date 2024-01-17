@@ -115,8 +115,6 @@
     const user = ref([])
     let showMessage = ref('')
 
-    // const name = ref('')
-
     const save = () => {
 
         api.put(`users/${user.value.id}`, {

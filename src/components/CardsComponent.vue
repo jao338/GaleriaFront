@@ -1,37 +1,14 @@
 <template>
 
-    <div id="cards" class="row d-flex justify-content-center">
-
+    <div id="cards" class="row d-flex justify-content-center" v-for="gallery in galleries" :key="gallery.id">
         <div class="col-md-5 card">
-            <div class="d-flex justify-content-center card-header">Macaco</div>
+            <div class="d-flex justify-content-center card-header">{{ gallery.name }}</div>
             <div class="card-body d-flex justify-content-center align-items-center p-0">
-                <img src="macaco.jpg" class="card-img-bottom" alt="">
+                <img :src="`http://localhost:8000/storage/${gallery.path}`" class="card-img-bottom" alt="">
             </div>
+
+            
         </div>
-
-        <div class="col-md-5 card">
-            <div class="d-flex justify-content-center card-header">Macaco</div>
-            <div class="card-body d-flex justify-content-center align-items-center p-0">
-                <img src="macaco.jpg" class="card-img-bottom" alt="">
-            </div>
-        </div>
-
-        <div class="col-md-5 card">
-            <div class="d-flex justify-content-center card-header">Macaco</div>
-            <div class="card-body d-flex justify-content-center align-items-center p-0">
-                <img src="macaco.jpg" class="card-img-bottom" alt="">
-            </div>
-        </div>
-
-        <div class="col-md-5 card">
-            <div class="d-flex justify-content-center card-header">Macaco</div>
-            <div class="card-body d-flex justify-content-center align-items-center p-0">
-                <img src="macaco.jpg" class="card-img-bottom" alt="">
-            </div>
-        </div>
-
-        <!-- {{ users }} -->
-
     </div>
 
 </template>
@@ -40,19 +17,15 @@
 import { onMounted, ref } from "vue";
 import { api } from '@/config/axios'
 
-    const users = ref([])
+    const galleries = ref('')
 
     onMounted(() => {
 
         if(localStorage.getItem('token')){
             
-            api.get('users', {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
+            api.get('gallery')
             .then(function(r) {
-                users.value = r.data.data;
+                galleries.value = r.data.data;
             })
             
         }
