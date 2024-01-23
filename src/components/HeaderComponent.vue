@@ -14,8 +14,19 @@
 
                     <v-sheet width="300" class="mx-auto">
 
-                        <v-file-input accept="image/*" label="File input"
-                         v-model="file"   @change="upload"></v-file-input>
+                        <v-btn @click="triggerFileInput">Upload</v-btn>
+                        <v-file-input 
+                            accept="image/*"
+                            ref="fileInputRef"
+                            prepend-icon=""
+                            label="Upload"
+                            v-model="file"
+                            style="display: none"
+                            @change="upload"
+                            >
+                        </v-file-input>
+                         
+
                     </v-sheet>
 
 
@@ -40,15 +51,19 @@
 </template>
 
 <script setup>
-    import {
-        api
-    } from '@/config/axios'
-    import {
-        onMounted,
-        ref
-    } from 'vue'
+    import { api } from '@/config/axios'
+    import { onMounted, ref } from 'vue'
 
     const file = ref('')
+    const showButtons = ref(false)
+    const fileInputRef = ref(null);
+    
+    const triggerFileInput = () => {
+        if (fileInputRef.value) {
+            fileInputRef.value.click();
+
+        }
+    };
 
     const upload = () => {
         let image = file.value[0]
@@ -59,6 +74,9 @@
         api.post('gallery', formData)
 
         .then((response) => {
+
+            window.location.reload(true);
+
             console.log(response);
         })
 
@@ -68,7 +86,7 @@
 
     }
 
-    const showButtons = ref(false)
+    
 
     onMounted(() => {
 

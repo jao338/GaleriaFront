@@ -1,14 +1,14 @@
 <template>
 
-    <div id="cards" class="row d-flex justify-content-center" v-for="gallery in galleries" :key="gallery.id">
-        <div class="col-md-5 card">
+    <div id="cards" class="row d-flex justify-content-center">
+        
+        <div class="col-md-5 card" v-for="gallery in galleries" :key="gallery.id">
             <div class="d-flex justify-content-center card-header">{{ gallery.name }}</div>
             <div class="card-body d-flex justify-content-center align-items-center p-0">
                 <img :src="`http://localhost:8000/storage/${gallery.path}`" class="card-img-bottom" alt="">
             </div>
-
-            
         </div>
+        
     </div>
 
 </template>
@@ -20,17 +20,12 @@ import { api } from '@/config/axios'
     const galleries = ref('')
 
     onMounted(() => {
-
-        if(localStorage.getItem('token')){
             
-            api.get('gallery')
+        api.get('gallery')
             .then(function(r) {
                 galleries.value = r.data.data;
             })
-            
-        }
-
-    })
+        })
     
 
 </script>

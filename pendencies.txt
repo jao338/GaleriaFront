@@ -1,13 +1,17 @@
-X - Ao buscar uma imagem no componente header emitir um evento que retorna a resposta da api. No elemento pai verificar se a chamada retornou algo.
-
-X - Adicionar uma formatação maior nos cards e nas imagens dentro deles
-
 X - Testar o responsivo em todas as views
 
 X - Adicionar modais de confirmação
 
-X - É possível validar um campo utilizando apenas uma regra, sendo que apenas a primeira é considerada
-
 X - Criar componentes customizados de cada elemento.
 
-X - Implementar o sistema de login usando token
+X - Comentar cada trecho de código importante
+
+X - Trocar as tags HTML pelos componentes do Vuetify
+
+X - Adicionar validação dos campos na tela de login
+
+X - Formatar margem dos elementos no header
+
+X - Implementar a busca por uma imagem específica pelo nome
+
+X - Criar uma tela que exiba a imagem selecionada, bem como todas as suas informações(nome, data de upload, formato e mais)
