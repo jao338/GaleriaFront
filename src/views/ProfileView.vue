@@ -3,8 +3,6 @@
     <div id="profile" class="container" ref="profile">
 
         <HeaderComponent />
-        <SearchComponent class="mB-32 mT-32"></SearchComponent>
-
         <div class="item d-flex justify-content-between w-100 mB-32">
 
             <div class="w-100 card">
@@ -107,7 +105,6 @@
 
     // import CustomInput     from '@/components/CustomInput.vue'
     import HeaderComponent from '@/components/HeaderComponent.vue'
-    import SearchComponent from '@/components/SearchComponent.vue'
     import { api } from '@/config/axios'
     import { onMounted, ref } from 'vue';
 
