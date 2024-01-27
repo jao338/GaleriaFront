@@ -22,8 +22,8 @@ import { api } from '@/config/axios'
     onMounted(() => {
             
         api.get('gallery')
-            .then(function(r) {
-                galleries.value = r.data.data;
+            .then(function(response) {
+                galleries.value = response.data.data;
             })
         })
     

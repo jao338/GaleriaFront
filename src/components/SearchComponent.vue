@@ -2,33 +2,19 @@
 
   <form @submit.prevent="search" class="d-flex" id="searchForm">
                 
-    <input type="text" class="form-control" placeholder="Search">
-    <button type="submit" class="btn btn-outline-dark mL-8">Search</button>
+    <CustomInputText label="Search" class="mr-4"></CustomInputText>
+    <CustomPrimaryButton type="submit" label="Search" class="test"></CustomPrimaryButton>
   
   </form>
 
 </template>
 
-<script>
-export default {
+<script setup>
 
-  setup(){
+import CustomInputText from "@/components/custom/inputs/CustomInputText.vue"
+import CustomPrimaryButton from '@/components/custom/buttons/CustomPrimaryButton.vue'
+  
 
-    const search = () => {
-
-      console.log('Search');
-
-    }
-
-    return {
-    
-      search,
-    
-    }  
-
-  }
-
-}
 </script>
 
 <style>
@@ -37,6 +23,10 @@ export default {
     margin-right: 54px !important;
     margin-left: 54px !important;
     /* border: 1px solid; */
+  }
+
+  .test{
+    height: auto !important;
   }
 
 </style>
