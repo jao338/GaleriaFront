@@ -2,71 +2,62 @@
 
     <div id="profile" class="container" ref="profile">
 
-        <HeaderComponent />
-        <div class="item d-flex justify-content-between w-100 mB-32">
-
-            <div class="w-100 card">
+        <HeaderComponent class="mb-4"/>
+        <div class="item mb-4">
+            <div class="card-vue">
                 <form @submit.prevent="save" class="pA-32 w-50">
                     <h4>Profile</h4>
                     <p>Update your account's profile information and email address</p>
 
                     <label for="name" class="mB-4">Name</label>
-
-                    <!-- <custom-input v-model="name"></custom-input> -->
-                    
-                    <input type="text" name="name" class="form-control mB-16" v-model="user.name">
+                    <CustomInputText type="text" name="name" v-model="user.name"></CustomInputText>
 
                     <label for="email" class="mB-4">Email</label>
-                    <input type="text" name="email" class="form-control mB-16" v-model="user.email">
+                    <CustomInputText type="text" name="email" v-model="user.email" class="mb-4"></CustomInputText>
 
-
-                    <button type="submit" class="btn btn-primary mT-16">Save</button>
+                    <CustomPrimaryButton type="submit" label="Save"></CustomPrimaryButton>
                 </form>
 
             </div>
-
         </div>
 
-        <div class="item d-flex justify-content-between w-100 mB-32">
+        <div class="item mb-4">
 
-            <div class="w-100 card">
+            <div class="card-vue">
 
                 <form @submit.prevent="save" class="pA-32 w-50">
                     <h4>Update password</h4>
                     <p>Ensure your account is using a long, random password to stay secure.</p>
 
                     <label for="currentPassword" class="mB-4">Current Password</label>
-                    <input type="text" name="currentPassword" class="form-control mB-4">
+                    <CustomInputText type="password" name="currentPassword"></CustomInputText>
 
                     <label for="newPassword" class="mB-4 mT-16">New Password</label>
-                    <input type="text" name="newPassword" class="form-control mB-4">
+                    <CustomInputText type="password" name="newPassword"></CustomInputText>
 
                     <label for="confirmPassword" class="mB-4 mT-16">Confirm Password</label>
-                    <input type="text" name="confirmPassword" class="form-control mB-4">
+                    <CustomInputText type="password" name="confirmPassword" class="mb-4"></CustomInputText>
 
                     <div class="w-50 text-start text-danger">{{ showMessage }}</div>
-                    <button type="submit" class="btn btn-primary mT-16">Save</button>
+                    <CustomPrimaryButton type="submit" label="Save"></CustomPrimaryButton>
                 </form>
 
             </div>
 
         </div>
 
-        <div class="item d-flex justify-content-between w-100 ">
+        <div class="item">
 
-            <div class="w-100 card">
+            <div class="card-vue">
 
                 <form @submit.prevent="save" class="pA-32 w-50">
                     <h4>Delete account</h4>
                     <p>Once your account is deleted, all of its resources and data will be permanently deleted. Before
                         deleting your account, please download any data or information that you wish to retain.</p>
-
-                    <!-- <button type="submit" class="btn btn-danger mT-16">Delete account</button> -->
                     
-                    <v-btn color="danger" class="text-white">
+                    <v-btn color="danger" class="text-white" size="large">
 
-                        <span>Delete Account</span>
-
+                        <span>Delete account</span>
                         <v-dialog v-model="dialog" activator="parent" width="auto">
                             <v-card>
 
@@ -102,11 +93,12 @@
 </template>
 
 <script setup>
+import { api } from '@/config/axios'
+import { onMounted, ref } from 'vue';
+import HeaderComponent from '@/components/HeaderComponent.vue'
+import CustomInputText from '@/components/custom/inputs/CustomInputText.vue'
+import CustomPrimaryButton from '@/components/custom/buttons/CustomPrimaryButton.vue'
 
-    // import CustomInput     from '@/components/CustomInput.vue'
-    import HeaderComponent from '@/components/HeaderComponent.vue'
-    import { api } from '@/config/axios'
-    import { onMounted, ref } from 'vue';
 
     const dialog = ref(false)
     const user = ref([])
@@ -188,11 +180,17 @@
 
 </script>
 
-<style>
+<style scoped>
     #profile {
         padding-bottom: 32px;
     }
 
+    .card-vue{
+        width: 100%;
+        border: 1px solid #cecece;
+        border-radius: 8px;
+    }
+    
     .item {
         padding-left: 54px !important;
         padding-right: 54px !important;

@@ -1,21 +1,18 @@
 <template>
 
-    <div id="cards" class="row d-flex justify-content-center">
-        
-        <div class="col-md-5 card" v-for="gallery in galleries" :key="gallery.id">
-            <div class="d-flex justify-content-center card-header">{{ gallery.name }}</div>
-            <div class="card-body d-flex justify-content-center align-items-center p-0">
-                <img :src="`http://localhost:8000/storage/${gallery.path}`" class="card-img-bottom" alt="">
-            </div>
-        </div>
-        
-    </div>
+    <v-row justify="center">
+        <v-col v-for="gallery in galleries" :key="gallery.id" cols="12" sm="2" md="3" lg="5" class="card-vue">
+            <CustomCard :image="`http://localhost:8000/storage/${gallery.path}`" :title="gallery.name"></CustomCard>
+        </v-col>
+    </v-row>
 
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
 import { api } from '@/config/axios'
+
+import CustomCard from '@/components/custom/cards/CustomCard.vue'
 
     const galleries = ref('')
 
@@ -31,14 +28,11 @@ import { api } from '@/config/axios'
 </script>
 
 <style scoped>
-    .card {
+
+    .card-vue {
         margin-left: 54px !important;
         margin-right: 54px !important;
         margin-bottom: 64px !important;
     }
 
-    .card-body {
-        max-height: 320px !important;
-        overflow: hidden;
-    }
 </style>

@@ -3,7 +3,7 @@
   <form @submit.prevent="search" class="d-flex" id="searchForm">
                 
     <CustomInputText label="Search" class="mr-4"></CustomInputText>
-    <CustomPrimaryButton type="submit" label="Search" class="test"></CustomPrimaryButton>
+    <CustomPrimaryButton type="submit" label="Search" class="h-auto"></CustomPrimaryButton>
   
   </form>
 
@@ -22,11 +22,6 @@ import CustomPrimaryButton from '@/components/custom/buttons/CustomPrimaryButton
   #searchForm{
     margin-right: 54px !important;
     margin-left: 54px !important;
-    /* border: 1px solid; */
-  }
-
-  .test{
-    height: auto !important;
   }
 
 </style>

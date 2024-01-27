@@ -6,11 +6,9 @@ X - Criar componentes customizados de cada elemento.
 
 X - Comentar cada trecho de código importante
 
-X - Trocar as tags HTML pelos componentes do Vuetify
+X - Trocar as tags HTML pelos componentes do Vuetify , retirar as classes do bootstrap e retirar do package.json
 
 X - Adicionar validação dos campos na tela de login
-
-X - Formatar margem dos elementos no header
 
 X - Implementar a busca por uma imagem específica pelo nome
 

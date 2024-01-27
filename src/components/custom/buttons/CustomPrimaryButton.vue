@@ -6,7 +6,7 @@
         variant="elevated"
         size="large"
       >{{ label }}
-      </v-btn>
+    </v-btn>
 
 
 </template>
