@@ -1,11 +1,14 @@
 <template>
 
-  <form @submit.prevent="search" class="d-flex" id="searchForm">
-                
-    <CustomInputText label="Search" class="mr-4"></CustomInputText>
-    <CustomPrimaryButton type="submit" label="Search" class="h-auto"></CustomPrimaryButton>
-  
-  </form>
+
+    <form @submit.prevent="search" class="d-flex" id="searchForm">
+                  
+      <CustomInputText label="Search" class="mr-4"></CustomInputText>
+      <CustomPrimaryButton type="submit" label="Search" class="h-auto"></CustomPrimaryButton>
+    
+    </form>
+
+
 
 </template>
 
@@ -18,10 +21,4 @@ import CustomPrimaryButton from '@/components/custom/buttons/CustomPrimaryButton
 </script>
 
 <style>
-
-  #searchForm{
-    margin-right: 54px !important;
-    margin-left: 54px !important;
-  }
-
 </style>

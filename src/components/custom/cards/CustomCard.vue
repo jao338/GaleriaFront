@@ -1,7 +1,7 @@
 <template>
     <v-card
       class="mx-auto text-center"
-      max-width="800"
+      max-width="600"
       height="300"
       :image="image"
       :title="title"

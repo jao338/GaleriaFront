@@ -13,3 +13,7 @@ X - Adicionar validação dos campos na tela de login
 X - Implementar a busca por uma imagem específica pelo nome
 
 X - Criar uma tela que exiba a imagem selecionada, bem como todas as suas informações(nome, data de upload, formato e mais)
+
+X - Alterar a diagramação e alinhamento das telas usando os recursos do Vuetify
+
+X - Usar um componente 100% do Vuetify no header, facilitando no responsivo - https://vuetifyjs.com/en/components/toolbars/#dense-toolbars

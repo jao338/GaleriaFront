@@ -1,19 +1,24 @@
 <template>
-    <div id="home" class="container">
-        <HeaderComponent class="mB-32"></HeaderComponent>
 
-        <SearchComponent class="mB-32"></SearchComponent>
+    <v-container>
 
+        <HeaderComponent class="mb-4"></HeaderComponent>
+    
+        <SearchComponent class="mb-4"></SearchComponent>
+    
         <CardsComponent />
 
-    </div>
+    </v-container>
+
+
 </template>
 
 <script setup>
-    import HeaderComponent from '@/components/HeaderComponent.vue';
-    import SearchComponent from '@/components/SearchComponent.vue';
-    import CardsComponent from '@/components/CardsComponent.vue';
-    
+
+import HeaderComponent from '@/components/HeaderComponent.vue';
+import SearchComponent from '@/components/SearchComponent.vue';
+import CardsComponent from '@/components/CardsComponent.vue';
+
 </script>
 
 <style scoped>
