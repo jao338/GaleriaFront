@@ -1,12 +1,12 @@
 <template>
-
-    //https://vuetifyjs.com/en/components/toolbars/#dense-toolbars
       
     <v-toolbar
     color="white"
     height="200px"
-    justify="between"
-    class="d-flex justify-content-between">
+    >
+
+    <div class="d-flex align-center justify-space-between w-100">
+
         <routerLink :to="{ name: 'home' }">
             <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="#303D97"
                 class="bi bi-github" viewBox="0 0 16 16">
@@ -15,8 +15,7 @@
             </svg>
         </routerLink>
 
-        <div class="d-flex align-items-center">
-
+        <div>
             <div v-if="!showButtons">
 
                 <routerLink :to="{ name: 'login' }">
@@ -55,6 +54,9 @@
             </div>
 
         </div>
+
+    </div>
+        
 
     </v-toolbar>        
 

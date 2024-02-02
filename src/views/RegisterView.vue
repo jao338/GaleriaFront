@@ -1,26 +1,26 @@
 <template>
   
-  <div id="login" class="container d-flex flex-column justify-content-center">
+  <v-container class="d-flex flex-column justify-center h-100">
 
-    <div class="row">
+    <v-row>
       
-      <div class="d-flex col-md-5">
+      <v-col cols="5" class="d-flex">
         <img src="register.svg" alt="" srcset="" class="w-100">
-      </div>
+      </v-col>
 
       <v-sheet class="d-flex col-md-7 align-items-center">
-        <v-form @submit.prevent="register" class="d-flex flex-column align-items-center w-100">
-          <h1 class="mB-32">Register</h1>
+        <v-form @submit.prevent="register" class="d-flex flex-column align-center w-100">
+          <h1 class="mb-8">Register</h1>
 
-          <v-text-field type="text" name="name" v-model="form.name" :rules="nameRules" placeholder="Name" class="w-50 mB-16" id="name"></v-text-field>
-          <v-text-field type="text" name="login" v-model="form.email" :rules="emailRules" placeholder="Email" class="w-50 mB-16" id="email"></v-text-field>
-          <v-text-field type="password" name="password" v-model="form.password" :rules="passwordRules" placeholder="Password" class="w-50 mB-16" id="password"></v-text-field>
-          <v-text-field type="password" name="confirm_password" v-model="form.confirmPassword" :rules="confirmPasswordRules" placeholder="Confirm Password" class="w-50" id="confirmPassword"></v-text-field>
+          <CustomInputText type="text" name="name" v-model="form.name" :rules="nameRules" class="w-50 mb-4" id="name" label="Nome"></CustomInputText>
+          <CustomInputText type="text" name="email" v-model="form.email" :rules="emailRules" class="w-50 mb-4" id="email" label="Email"></CustomInputText>
+          <CustomInputText type="password" name="password" v-model="form.password" :rules="passwordRules" class="w-50 mb-4" id="password" label="Password"></CustomInputText>
+          <CustomInputText type="password" name="confirm_password" v-model="form.confirmPassword" :rules="passwordRules" class="w-50 mb-4" id="confirm_password" label="Confirm Password"></CustomInputText>
 
-          <div class="w-50 text-start text-danger">{{ showMessage }}</div>
-          <button type="submit" class="btn btn-primary w-50 mT-16" :loading="loading">Register</button>
+          <div class="w-50 text-start text-error">{{ showMessage }}</div>
+          <CustomPrimaryButton type="submit" class="w-50 mt-4" label="Register"></CustomPrimaryButton>
 
-          <div class="d-flex justify-content-center w-50 mT-16">
+          <div class="d-flex justify-center w-50 mt-4">
             <span class="mR-16">Already have a registration?</span>
             <routerLink :to="{ name : 'login'}">Login!</routerLink>
           </div>
@@ -29,17 +29,13 @@
 
       </v-sheet>
 
-    </div>
+    </v-row>
 
-    <routerLink :to="{ name : 'home' }" id="btnReturn">
-
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-      </svg>
-
+    <routerLink :to="{ name: 'home' }" id="btnReturn">
+      <CustomIconButton icon="mdi-arrow-left"></CustomIconButton>
     </routerLink>
 
-  </div>
+  </v-container>
 
 </template>
 
@@ -48,11 +44,13 @@ import { reactive, ref } from "vue";
 import { api } from '@/config/axios'
 import { useRouter } from 'vue-router'
 
+import CustomPrimaryButton from '@/components/custom/buttons/CustomPrimaryButton.vue'
+import CustomIconButton from '@/components/custom/buttons/CustomIconButton.vue'
+import CustomInputText from '@/components/custom/inputs/CustomInputText.vue'
+
   const router = useRouter()
 
-  let loading = false
-
-  let showMessage = ref('')
+  const showMessage = ref('')
 
     const form = reactive({
       name: '',
@@ -62,8 +60,6 @@ import { useRouter } from 'vue-router'
     });
 
     const register = () => {
-
-      loading = true
 
       api.post('register', form) 
       .then((response) => {
@@ -88,12 +84,9 @@ import { useRouter } from 'vue-router'
         
       })
       
-      loading = false
     }
 
-    
-
-    const nameRules = [
+        const nameRules = [
         value => {
           if (value) return true
 
@@ -124,14 +117,6 @@ import { useRouter } from 'vue-router'
 
     ];
 
-    const confirmPasswordRules = [
-        value => {
-          if (value) return true
-
-          return 'You must enter a value.'
-        }
-    ];
-
 </script>
 
 <style>
@@ -142,7 +127,4 @@ import { useRouter } from 'vue-router'
     color: #0d6efd;
   }
 
-  #login{
-    height: 100vh;
-  }
 </style>
